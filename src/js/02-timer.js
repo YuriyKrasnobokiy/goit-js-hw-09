@@ -30,19 +30,19 @@ const fp = flatpickr(input, {
     } else {
       startBtn.disabled = false;
       startBtn.addEventListener('click', () => {
-        timerId = setInterval(() => {
+        const timerId = setInterval(() => {
           const currentTime = new Date();
           const ms = selectedDates[0].getTime() - currentTime.getTime();
           timerDays.textContent = addLeadingZero(convertMs(ms).days);
           timerHours.textContent = addLeadingZero(convertMs(ms).hours);
           timerMinutes.textContent = addLeadingZero(convertMs(ms).minutes);
           timerSeconds.textContent = addLeadingZero(convertMs(ms).seconds);
-          if (ms < 0) {
+          if (ms < 1000) {
             clearInterval(timerId);
-            timerDays.textContent = '00';
-            timerHours.textContent = '00';
-            timerMinutes.textContent = '00';
-            timerSeconds.textContent = '00';
+            // timerDays.textContent = '00';
+            // timerHours.textContent = '00';
+            // timerMinutes.textContent = '00';
+            // timerSeconds.textContent = '00';
           }
         }, 1000);
       });
