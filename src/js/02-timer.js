@@ -1,5 +1,6 @@
 import flatpickr from 'flatpickr';
 import 'flatpickr/dist/flatpickr.min.css';
+import Notiflix from 'notiflix';
 
 const input = document.querySelector('#datetime-picker');
 
@@ -21,7 +22,13 @@ const fp = flatpickr(input, {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0].getTime() - currentDate.getTime() < 0) {
-      window.alert('Please choose a date in the future');
+      // window.alert('Please choose a date in the future');
+
+      Notiflix.Report.warning(
+        'WARNING!',
+        'Please choose a date in the future',
+        'Ok'
+      );
     } else {
       startBtn.disabled = false;
       startBtn.addEventListener('click', () => {
@@ -32,7 +39,7 @@ const fp = flatpickr(input, {
           timerHours.textContent = addLeadingZero(convertMs(ms).hours);
           timerMinutes.textContent = addLeadingZero(convertMs(ms).minutes);
           timerSeconds.textContent = addLeadingZero(convertMs(ms).seconds);
-          if (timerSeconds.textContent === '0') {
+          if (timerSeconds.textContent === '00') {
             clearInterval(timer);
           }
         }, 1000);
@@ -63,3 +70,5 @@ function convertMs(ms) {
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
+
+// +++++++++++++++++++++++++++ПЕРЕВІРИТИ ПО ТАСКАМ 2ї ТАСКИ І ДОДАТИ СТИЛІ++++++++++++++++++++++++++++++++++++++++++++++++++
