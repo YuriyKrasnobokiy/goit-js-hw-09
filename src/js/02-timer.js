@@ -22,8 +22,6 @@ const fp = flatpickr(input, {
   minuteIncrement: 1,
   onClose(selectedDates) {
     if (selectedDates[0].getTime() - currentDate.getTime() < 0) {
-      // window.alert('Please choose a date in the future');
-
       Notiflix.Report.warning(
         'WARNING!',
         'Please choose a date in the future',
@@ -74,5 +72,3 @@ function convertMs(ms) {
 function addLeadingZero(value) {
   return value.toString().padStart(2, '0');
 }
-
-// +++++++++++++++++++++++++++ПЕРЕВІРИТИ ПО ТАСКАМ 2ї ТАСКИ І ДОДАТИ СТИЛІ++++++++++++++++++++++++++++++++++++++++++++++++++
