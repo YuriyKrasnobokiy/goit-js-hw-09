@@ -30,15 +30,15 @@ const fp = flatpickr(input, {
     } else {
       startBtn.disabled = false;
       startBtn.addEventListener('click', () => {
-        timer = setInterval(() => {
+        timerId = setInterval(() => {
           const currentTime = new Date();
           const ms = selectedDates[0].getTime() - currentTime.getTime();
           timerDays.textContent = addLeadingZero(convertMs(ms).days);
           timerHours.textContent = addLeadingZero(convertMs(ms).hours);
           timerMinutes.textContent = addLeadingZero(convertMs(ms).minutes);
           timerSeconds.textContent = addLeadingZero(convertMs(ms).seconds);
-          if (ms <= 0) {
-            clearInterval(timer);
+          if (ms < 0) {
+            clearInterval(timerId);
             timerDays.textContent = '00';
             timerHours.textContent = '00';
             timerMinutes.textContent = '00';
