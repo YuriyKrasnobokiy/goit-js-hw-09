@@ -14,7 +14,7 @@ let timerSeconds = document.querySelector('span[data-seconds]');
 const currentDate = new Date();
 
 startBtn.disabled = true;
-
+let timerId;
 const fp = flatpickr(input, {
   enableTime: true,
   time_24hr: true,
