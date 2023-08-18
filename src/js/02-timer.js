@@ -14,7 +14,7 @@ let timerSeconds = document.querySelector('span[data-seconds]');
 const currentDate = new Date();
 
 startBtn.disabled = true;
-let timerId;
+
 const fp = flatpickr(input, {
   enableTime: true,
   time_24hr: true,
@@ -37,12 +37,8 @@ const fp = flatpickr(input, {
           timerHours.textContent = addLeadingZero(convertMs(ms).hours);
           timerMinutes.textContent = addLeadingZero(convertMs(ms).minutes);
           timerSeconds.textContent = addLeadingZero(convertMs(ms).seconds);
-          if (ms < 1000) {
+          if (ms < 0) {
             clearInterval(timerId);
-            // timerDays.textContent = '00';
-            // timerHours.textContent = '00';
-            // timerMinutes.textContent = '00';
-            // timerSeconds.textContent = '00';
           }
         }, 1000);
       });
