@@ -37,8 +37,11 @@ const fp = flatpickr(input, {
           timerHours.textContent = addLeadingZero(convertMs(ms).hours);
           timerMinutes.textContent = addLeadingZero(convertMs(ms).minutes);
           timerSeconds.textContent = addLeadingZero(convertMs(ms).seconds);
+          input.disabled = true;
+          startBtn.disabled = true;
           if (ms < 1000) {
             clearInterval(timerId);
+            input.disabled = false;
           }
         }, 1000);
       });
