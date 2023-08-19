@@ -11,28 +11,29 @@ btnCreatePromise.addEventListener('click', onSubmit);
 function onSubmit(event) {
   event.preventDefault();
   let delay = Number(inputDelay.value);
-  console.log(delay);
+
   const step = Number(inputDelayStep.value);
   const amount = Number(inputAmount.value);
+  let position;
 
   for (let i = 0; i < amount; i += 1) {
-    let position = i;
     delay += step;
-
+    position = i;
     createPromise(position, delay);
   }
 
   function createPromise(position, delay) {
     const shouldResolve = Math.random() > 0.3;
-    const promise = new Promise((resolve, reject) => {
+    let promise = new Promise((resolve, reject) => {
       setTimeout(() => {
         if (shouldResolve) {
-          resolve('Success! Value passed to resolve function');
+          resolve({ position, delay });
         } else {
-          reject('Error! Error passed to reject function');
+          reject({ position, delay });
         }
       }, delay);
     });
+
     promise
       .then(({ position, delay }) => {
         Notiflix.Notify.success(
