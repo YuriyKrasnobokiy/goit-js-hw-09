@@ -14,12 +14,10 @@ function onSubmit(event) {
 
   const step = Number(inputDelayStep.value);
   const amount = Number(inputAmount.value);
-  let position;
 
-  for (let i = 0; i < amount; i += 1) {
+  for (let i = 1; i <= amount; i += 1) {
+    createPromise(i, delay);
     delay += step;
-    position = i;
-    createPromise(position, delay);
   }
 
   function createPromise(position, delay) {
